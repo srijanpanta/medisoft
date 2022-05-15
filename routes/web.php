@@ -24,4 +24,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('location-user', [LocationController::class, 'index']);
-Route::resource('report', ReportController::class);
+Route::resource('report', ReportController::class)->middleware('auth');

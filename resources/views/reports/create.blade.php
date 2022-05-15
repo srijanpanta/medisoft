@@ -41,7 +41,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Discription of your report..."></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Discription of your report..." name="reportDescription"></textarea>
                 </div>
                 <div class="file-upload">
                     <div class="image-upload-wrap">
@@ -65,6 +65,7 @@
                 </div>
                 
                 <div class="form-group">
+                    <input type="text" name="userId" hidden value="{{auth()->user()->id}}">
                     <input type="submit" name="btnSubmit" class="btn btn-primary" value="Send Message" />
                 </div>
             </div>

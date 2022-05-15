@@ -43,8 +43,9 @@ class ReportController extends Controller
         //dd($request->reportImage);
         $request->validate([
             'reportName' => 'required',
-            'diseaseName' => 'required',
+            'diseaseName' => 'required',  
             'location' => 'required',
+            'reportDescription'=>'required',
             'reportImage' => 'required|image|mimetypes:image/jpeg,image/png',
             ]);
             
