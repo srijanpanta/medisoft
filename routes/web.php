@@ -22,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::put('/home',[App\Http\Controllers\HomeController::class, 'update'])->name('home.update');
 
 Route::get('location-user', [LocationController::class, 'index']);
 Route::resource('report', ReportController::class)->middleware('auth');

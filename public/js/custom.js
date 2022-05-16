@@ -1,3 +1,23 @@
+window.addEventListener("scroll", reveal);
+function reveal() {
+ var reveals = document.querySelectorAll(".reveal");
+
+
+ for (var i = 0; i < reveals.length; i++) {
+   var windowHeight = window.innerHeight;
+   var elementTop = reveals[i].getBoundingClientRect().top;
+   var elementVisible = 50;
+
+   if (elementTop < windowHeight - elementVisible) {
+     reveals[i].classList.add("isActive");
+   } else {
+     reveals[i].classList.remove("isActive");
+   }
+ }
+}
+
+
+
 function readURL(input) {
    if (input.files && input.files[0]) {
  
@@ -57,10 +77,6 @@ function readURL(input) {
    i=0;
      }
  };
- const form = document.querySelector("form");
- form.addEventListener('submit', function (e) {
-     e.preventDefault();
- });
  
 
  
@@ -74,3 +90,5 @@ function readURL(input) {
     phoneNumber.classList.add("phoneNoInput");
     phoneNumber.placeholder="";
  }
+ 
+

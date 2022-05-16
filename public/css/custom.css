@@ -345,9 +345,9 @@ h1 {
     }
     .phoneNoInput
     {
-        transform: translate(10px,0);
-        width: 85%;
-        margin-left: 15%;
+        transform: translate(5%,0);
+        width: 84%;
+        margin-left: 14%;
         transition: 0.25s;
     }
     .countryCode{
@@ -359,4 +359,41 @@ h1 {
         color: #b0adad;
         font-weight:bold;
     }
-  
+
+    .reveal{
+        position: relative;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: 1s all ease;
+      }
+      .isActive{
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .feature {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.5rem;
+      }
+   .inputProfile
+   {
+       margin:0;
+       background-color: #fff;
+       border-style: none;
+   }
+   .inputProfile:focus
+   {
+       outline:none;
+       background-color: #f6f3f3;
+   }
+   #updateButton
+   {
+       display:none;
+   }
+   #cancelButton
+   {
+       display: none;
+   }

@@ -27,7 +27,7 @@
           <form action="{{route('register')}}" method="POST">
             @csrf
             <div class="form-group">
-                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full Name">
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Full Name">
               
 
               @error('name')
@@ -37,7 +37,7 @@
               @enderror
             </div>
             <div class="form-group">
-                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email address">
+                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Email address">
           
 
             @error('email')
@@ -46,20 +46,24 @@
                 </span>
             @enderror
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <div class="phoneNo">
                 <div class="countryCode" id="countryCode">
                     <span>+977</span>
                 </div>
-                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control @error('phoneNumber') is-invalid @enderror" placeholder="Phone Number" onfocus="phoneNo()">
+                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control @error('phoneNumber') is-invalid @enderror" placeholder="Phone Number" onfocus="phoneNo()" value="{{old('phoneNumber')}}">
+
+                @error('phoneNumber')
+                <span class="invalid-feedback" role="alert">
+                   <strong>{{ $message }}</strong>
+               </span>
+                 @enderror
 
             </div>
-            
-            
         </div>
             
             <div class="form-group mb-3">
-              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Password">
 
               @error('password')
                <span class="invalid-feedback" role="alert">
@@ -68,7 +72,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm Password">
               </div>
             <div class="d-flex justify-content-between align-items-center mb-5">
               <input name="login" id="login" class="btn login-btn" type="submit" value="Register">

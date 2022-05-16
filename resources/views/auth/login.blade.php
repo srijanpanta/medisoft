@@ -27,27 +27,23 @@
           <form action="{{route('login')}}" method="POST">
             @csrf
             <div class="form-group">
-              <label for="email" class="sr-only">Email</label>
-              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+              <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Email">
               @error('email')
-               <span class="invalid-feedback" role="alert">
+              <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
-                @enderror
+            @enderror
             </div>
             
             <div class="form-group mb-3" style="position:relative">
-              <label for="password" class="sr-only">Password</label>
-                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                <input id="password" type="password" class="form-control" name="password" autocomplete="current-password" placeholder="Password">
                 <div style="position: absolute; right:0.5rem; top:1rem">
                     <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
                 </div>
-             
-
-              @error('password')
-               <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
+                @error('password')
+                <span class="invalid-feedback d-block" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="row mb-3">

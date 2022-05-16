@@ -19,8 +19,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
    
-    
-
     <!-- Styles -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
 
@@ -87,6 +85,17 @@
         <main>
             @yield('content')
         </main>
+        @if(session()->has('success'))
+            <div class="alert alert-success alert-dismissable fade show col-4" style="position: fixed; bottom:0; right:0; height:4rem">
+                <div class="row">
+                    <h5 class="col-9 py-1">
+                        {{ session()->get('success') }}
+                    </h5>
+                    <a class="close btn col-1" type="button" data-bs-dismiss="alert"><h5 class="fas fa-times-circle text-center text-danger"></h5></a>
+                </div>
+                
+            </div>
+        @endif
     </div>
     <script src = "{{ asset('js/custom.js') }}"></script>
 </body>
