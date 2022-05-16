@@ -109,8 +109,6 @@
             inputField[i].classList.add('form-control');
         }
         inputField[0].focus();
-
-        window.alert('Success');
     }
     
 </script>
