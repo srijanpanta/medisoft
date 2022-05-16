@@ -76,7 +76,7 @@
                                     <button class="btn btn-success w-75" id="updateButton" type="submit"> Update Profile</button>
                                     </div>
                                     <div class="col-6">
-                                    <a class="btn btn-warning w-75" id="changePassword" type="button"> Change Password</a>
+                                    <a class="btn btn-warning w-75" id="changePassword" href="{{route('changePassword.index')}}"> Change Password</a>
                                     <button class="btn btn-danger w-75" id="cancelButton" type="button"> Cancel</button>
                                     </div>
                                 </div>
