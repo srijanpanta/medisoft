@@ -16,6 +16,8 @@ class ReportController extends Controller
     public function index()
     {
         //
+        $reports = Report::latest()->paginate(8);
+        return view('reports.index',compact('reports'));
         
     }
 
@@ -50,13 +52,13 @@ class ReportController extends Controller
             ]);
             
             $input = $request->all();
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
+            if ($request->hasFile('reportImage')) {
+                $file = $request->file('reportImage');
                 $file_extension = $file->getClientOriginalName();
                 $destination_path = public_path() . '/images/';
                 $filename = $file_extension;
-                $request->file('image')->move($destination_path, $filename);
-                $input['image'] = $filename;
+                $request->file('reportImage')->move($destination_path, $filename);
+                $input['reportImage'] = $filename;
             }
         Report::create($input);
         return redirect('reports')->with('success','Report added successfully');

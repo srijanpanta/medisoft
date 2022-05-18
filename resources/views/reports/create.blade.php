@@ -6,7 +6,7 @@
     <div class="contact-image">
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
     </div>
-    <form method="POST" action="{{route('report.store')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{route('reports.store')}}" enctype="multipart/form-data">
         @csrf
         <h3>Add a medical report</h3>
        <div class="row">

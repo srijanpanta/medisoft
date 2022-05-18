@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::put('/home',[App\Http\Controllers\HomeController::class, 'update'])->name('home.update');
 
 Route::get('location-user', [LocationController::class, 'index']);
-Route::resource('report', ReportController::class)->middleware('auth');
+Route::resource('reports', ReportController::class)->middleware('auth');
 
 Route::get('change-password', [ChangePasswordController::class,'index'])->name('changePassword.index');
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('changePassword.update');
