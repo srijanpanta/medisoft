@@ -72,12 +72,12 @@
                                 <hr>
                                 <div class="row py-2">
                                     <div class="col-6">
-                                    <button class="btn btn-primary w-75" id="editButton" type="button"> Edit Profile</button>
-                                    <button class="btn btn-success w-75" id="updateButton" type="submit"> Update Profile</button>
+                                    <button class="btn btn-primary w-100 p-2" id="editButton" type="button"> Edit Profile</button>
+                                    <button class="btn btn-success w-100 p-2" id="updateButton" type="submit"> Update Profile</button>
                                     </div>
                                     <div class="col-6">
-                                    <a class="btn btn-warning w-75" id="changePassword" href="{{route('changePassword.index')}}"> Change Password</a>
-                                    <button class="btn btn-danger w-75" id="cancelButton" type="button"> Cancel</button>
+                                    <a class="btn btn-warning w-100 p-2" id="changePassword" href="{{route('changePassword.index')}}"> Change Password</a>
+                                    <button class="btn btn-danger w-100 p-2" id="cancelButton" type="button"> Cancel</button>
                                     </div>
                                 </div>
                               </div>

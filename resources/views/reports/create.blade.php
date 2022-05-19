@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('dashboard.index')
 
-@section('content')
+@section('dashboardContent')
 
-<div class="container contact-form">
+<div class="container w-75 mt-5">
     <div class="contact-image">
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
     </div>
@@ -66,7 +66,7 @@
                 
                 <div class="form-group">
                     <input type="text" name="userId" hidden value="{{auth()->user()->id}}">
-                    <input type="submit" name="btnSubmit" class="btn btn-primary" value="Send Message" />
+                    <input type="submit" name="btnSubmit" class="btn btn-primary" value="Upload Report" />
                 </div>
             </div>
             
