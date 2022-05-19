@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function index()
     {
         //
-        $reports = Report::latest()->paginate(8);
+        $reports = Report::latest()->Paginate(8);
         return view('reports.index',compact('reports'));
         
     }
@@ -74,6 +74,7 @@ class ReportController extends Controller
     public function show(Report $report)
     {
         //
+        return view('reports.show', compact('report'));
     }
 
     /**

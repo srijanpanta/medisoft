@@ -20,8 +20,7 @@ return new class extends Migration
             $table->string("diseaseName");
             $table->string("location");
             $table->string("reportImage");
-            $table->unsignedBigInteger("userId");
-            $table->foreign('userId')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
