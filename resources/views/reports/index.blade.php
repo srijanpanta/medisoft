@@ -3,12 +3,15 @@
 <div class="container">
     <div class="row mb-5 mt-4">
         <div class="col-12">
-         <div class="input-group rounded h-100 p-0">
-             <input type="search" class="form-control rounded" placeholder="Search for medical reports" aria-label="Search" aria-describedby="search-addon" />
-             <span class="input-group-text border-0" id="search-addon">
-               <i class="fas fa-search"></i>
-             </span>
-           </div>
+            <form method="GET" action="#">
+                <div class="input-group rounded h-100 p-0">
+                
+                    <input type="search" name = "search" class="form-control rounded" placeholder="Search for medical reports" aria-label="Search" aria-describedby="search-addon" />
+                    <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                    </span>
+            </div>
+        </form>
         </div>
      </div>
      <div class="row mt-3">
@@ -19,7 +22,7 @@
                     <div class="card-block">
                         <div class="card-text-bg">
                             <p class="card-text"><i class="fa-solid fa-image"></i>   {{$report->reportName}}</p>
-                            <p class="date">{{$report->created_at->todatestring()}}</p>
+                            <p class="date">{{$report->created_at->todatestring()."  ".$report->user_id}}</p>
                         </div>
                     </div>
                 </div>
@@ -27,7 +30,7 @@
          @endforeach
      </div>
      <div class="mt-3">
-        {{ $reports->links() }}
+        {{ $reports->appends(request()->query())->links()}}
      </div>
      
 </div>

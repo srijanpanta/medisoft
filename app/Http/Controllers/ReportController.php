@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Models\Districts;
 use Illuminate\Http\Request;
+use Auth;
 
 class ReportController extends Controller
 {
@@ -16,8 +17,9 @@ class ReportController extends Controller
     public function index()
     {
         //
-        $reports = Report::latest()->Paginate(8);
-        return view('reports.index',compact('reports'));
+        return view('reports.index',[
+            'reports' => $this->getReports()
+            ]);
         
     }
 
@@ -109,5 +111,18 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    protected function getReports()
+    {
+        $reports = Auth::user()->reports()->latest();
+        if(request('search'))
+        {
+            $reports
+                ->Where('reportName','like','%'.request('search').'%');
+        }
+        
+        return $reports->paginate(8);
+
     }
 }

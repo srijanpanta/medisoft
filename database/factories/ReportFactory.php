@@ -25,7 +25,7 @@ class ReportFactory extends Factory
             'diseaseName' =>  $this->faker->randomElement(['Allergies', 'Colds and Flu', 'Conjunctivitis', 'Diarrhea', 'Headaches', 'Mononucleosis', 'Stomach Aches', 'Covid', 'Kidney Stone', 'Diabetes', 'Depression', 'Anxiety', 'Hemorrhoid', 'Yeast infection', 'Lupus', 'Shingles', 'Psoriasis', 'Schizophrenia', 'Lyme disease', 'HPV', 'Herpes', 'Pneumonia', 'Fibromyalgia', 'Scabies', 'Chlamydia', 'Endometriosis', 'Strep throat', 'Diverticulitis', 'Bronchitis']),
             'reportImage'=>'sampleReport.png',
             'location'=> Districts::all()->random()->id,
-            'userId' => User::all()->random()->id,
+            'user_id' => User::all()->random()->id,
             'created_at' => now(),
             'updated_at' => now(),
         ];

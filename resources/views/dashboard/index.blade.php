@@ -2,14 +2,14 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
                 <h1 class="d-lg-none dashboard">Dashboard</h1>
                 <button class="navbar-toggler ms-auto" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-                <div class="navbar navbar-collapse collapse" id="sidebarContent">
-                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+                <div class="navbar navbar-collapse collapse justify-content-center" id="sidebarContent">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width:280px">
                         <ul class="nav nav-pills flex-column mb-auto">
                             <li class="nav-item mb-3">
                                 <a href="{{route('reports.create')}}" class="newButton"><i class="fa-solid fa-plus addIcon"></i> New Report</a>

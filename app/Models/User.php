@@ -11,8 +11,6 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
-    public $posts = auth()->user()->posts()->orderBy('created_at', 'desc')->paginate(6);
-
     /**
      * The attributes that are mass assignable.
      *
