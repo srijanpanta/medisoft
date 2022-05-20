@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \Chatify\ChatifyServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -193,5 +194,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+    'Chatify' => Chatify\Facades\ChatifyMessenger::class,
 
 ];

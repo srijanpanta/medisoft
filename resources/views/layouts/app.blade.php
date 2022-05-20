@@ -62,6 +62,9 @@
                             @endif
                         @else
                             <li class="nav-item mr-lg-5 mr-2">
+                                <a class="nav-link notification" href="{{ route('chatify') }}"><i class="fa-solid fa-message"></i></a>
+                            </li>
+                            <li class="nav-item mr-lg-5 mr-2">
                                 <a class="nav-link notification" href="{{ route('register') }}"><i class="fa-solid fa-bell"></i> <span class="badge">0</span></a>
                             </li>
                             <li class="nav-item dropdown">

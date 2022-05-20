@@ -22,7 +22,7 @@
                     <div class="card-block">
                         <div class="card-text-bg">
                             <p class="card-text"><i class="fa-solid fa-image"></i>   {{$report->reportName}}</p>
-                            <p class="date">{{$report->created_at->todatestring()."  ".$report->user_id}}</p>
+                            <p class="date">{{$report->created_at->todatestring()}}</p>
                         </div>
                     </div>
                 </div>

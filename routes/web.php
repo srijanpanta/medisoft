@@ -5,6 +5,8 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard'
 
 Route::get('location-user', [LocationController::class, 'index']);
 Route::resource('reports', ReportController::class)->middleware('auth');
+Route::resource('doctors', DoctorController::class)->middleware('auth');
+
 
 Route::get('change-password', [ChangePasswordController::class,'index'])->name('changePassword.index');
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('changePassword.update');
