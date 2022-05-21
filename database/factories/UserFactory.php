@@ -41,5 +41,16 @@ class UserFactory extends Factory
                 'email_verified_at' => null,
             ];
         });
-    }   
+    }
+    public function doctor()
+    {
+        return $this->state(function ($faker) {
+            return [
+                'role' => 'doctor',
+                'nmc_no' => $this->faker->unique()->numberBetween(1000,20000),
+                'doctor_degree' => $this->faker->randomElement(['MBBS', 'MD', 'BDS', 'MS']),
+                'doctor_type'=>$this->faker->randomElement(['Ear, Nose and Throat', 'General Surgery', 'Ophthalmology', 'Orthopaedics', 'Obstetrics and Gynaecology', 'Pharmacology', 'Physiology', 'Radio-Therapy', 'Physician', 'Cardiology', 'Paediatrics', 'Nephrology', 'Neurology']),
+            ];
+        });
+    }  
 }
