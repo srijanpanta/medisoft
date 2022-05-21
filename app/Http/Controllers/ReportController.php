@@ -6,6 +6,7 @@ use App\Models\Report;
 use App\Models\Districts;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class ReportController extends Controller
 {
@@ -119,7 +120,7 @@ class ReportController extends Controller
         if(request('search'))
         {
             $reports
-                ->Where('reportName','like','%'.request('search').'%');
+                ->whereRaw('CONCAT(`reportName`,`diseaseName`) LIKE "%'.request('search').'%"');
         }
         
         return $reports->paginate(8);

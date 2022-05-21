@@ -16,27 +16,27 @@
                                 <hr>
                             </li>
                         <li class="nav-item">
-                            <a href="/reports" class="nav-link active" aria-current="page">
+                            <a href="/reports" class="nav-link link-dark @if (Route::current()->getName() == 'reports.index') active  @endif" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                             Reports
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('doctors.index')}}" class="nav-link link-dark">
+                            <a href="{{route('doctors.index')}}" class="nav-link link-dark @if (Route::current()->getName() == 'doctors.index') active  @endif">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                             Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
+                            <a href="{{route('friends.index')}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                            Orders
+                            Your Doctors
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
+                            <a href="{{route('friends.create')}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                            Products
+                            Patient Requests <span class="badge badge-primary">{{Auth::user()->friend_requests->count()}}</span>
                             </a>
                         </li>
                         <li>

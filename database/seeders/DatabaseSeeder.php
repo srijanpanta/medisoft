@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
                 'districtName'=> $districts[$i]
             ]);
         }
+        
         \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->doctor()->create();
         \App\Models\Report::factory(1000)->create();
     }
 }
