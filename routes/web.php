@@ -6,6 +6,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\FriendshipController;
+
 
 
 /*
@@ -37,3 +39,5 @@ Route::resource('doctors', DoctorController::class)->middleware('auth');
 
 Route::get('change-password', [ChangePasswordController::class,'index'])->name('changePassword.index');
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('changePassword.update');
+
+Route::resource('friends',FriendshipController::class)->middleware('auth');
