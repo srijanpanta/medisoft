@@ -95,7 +95,7 @@ class DoctorController extends Controller
                 ->whereRaw('CONCAT(`name`,`doctor_type`) LIKE "%'.request('search').'%"');
         }
         
-        return $doctors->paginate(8);
+        return $doctors->paginate(6);
 
     }
 }
