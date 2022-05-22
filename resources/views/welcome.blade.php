@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAktRDBaNXeVPp908e4H9WEBD5bZ4hoTVA"></script>
 
 <!-- Header-->
 <header class="bg-dark py-5">

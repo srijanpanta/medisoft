@@ -135,4 +135,16 @@ public function friend_requests()
 	return $this->hasMany(Friendship::class, 'second_user')
 	->where('status', 'pending');
 }
+
+public function getFriendship(User $user) {
+return Friendship::where(function($q) use($user){
+$q->where(function($q) use($user) {
+$q->where('first_user', $user->id)
+  ->where('second_user', $this->id);
+})->orWhere(function($q) use($user) {
+$q->where('first_user', $this->id)
+  ->where('second_user', $user->id);
+});
+})->first();
+}
 }

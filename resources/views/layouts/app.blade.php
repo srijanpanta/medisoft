@@ -62,10 +62,15 @@
                             @endif
                         @else
                             <li class="nav-item mr-lg-5 mr-2">
-                                <a class="nav-link notification" href="{{ route('chatify') }}"><i class="fa-solid fa-message"></i></a>
+                                <a class="nav-link notification" href="{{ route('medichat') }}"><i class="fa-solid fa-message"></i>
+                                @php
+                                    $unseenMsg= DB::table('ch_messages')->where('to_id',Auth::user()->id)->where('seen','0')->get();
+                                    $unseenCounter = count($unseenMsg);
+                                @endphp
+                                 <span class="badge">{{$unseenCounter}}</span></a>
                             </li>
                             <li class="nav-item mr-lg-5 mr-2">
-                                <a class="nav-link notification" href="{{ route('register') }}"><i class="fa-solid fa-bell"></i> <span class="badge">0</span></a>
+                                <a class="nav-link notification" href="notification"><i class="fa-solid fa-bell"></i> <span class="badge">0</span></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

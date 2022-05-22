@@ -30,15 +30,24 @@
                         <li>
                             <a href="{{route('friends.index')}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                            Your Doctors
+                            @can('isDoctor')
+                            
+                                 Your Patients
+                            
+                            @endcan
+                            @can('isPatient')
+                                Your Doctors
+                            @endcan
                             </a>
                         </li>
-                        <li>
+                        @can('isDoctor')
+                            <li>
                             <a href="{{route('friends.create')}}" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
                             Patient Requests <span class="badge badge-primary">{{Auth::user()->friend_requests->count()}}</span>
                             </a>
                         </li>
+                        @endcan
                         <li>
                             <a href="#" class="nav-link link-dark">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
