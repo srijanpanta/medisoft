@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Friendship;
 use App\Models\User;
+use App\Models\Reports;
 use Illuminate\Http\Request;
+use Exception;
 use Auth;
 
 class FriendshipController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('can:isDoctor', ['except' => ['index']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,12 +64,28 @@ class FriendshipController extends Controller
      * @param  \App\Models\Friendship  $friendship
      * @return \Illuminate\Http\Response
      */
-    public function show(Friendship $friendship)
+    public function show($id)
     {
-        //
-        $user=User::find(Auth::user()->id);
-        $friendship=$user->friend_requests();
-        dd($friendship);
+       
+         $user = User::find($id);
+         $friendship=$user->getFriendShip(Auth::user());
+         if($friendship)
+         {
+             if($friendship->status=="confirmed")
+             {
+                 $reports = $this->getReports($user);
+                return view('doctors.reports',compact('reports'));
+             }
+             else
+             {
+                  abort(403, 'Unauthorized action.');
+             }
+             
+         }
+         else
+         {
+              abort(403, 'Unauthorized action.');
+         }
     }
 
     /**
@@ -101,5 +123,18 @@ class FriendshipController extends Controller
     public function destroy(Friendship $friendship)
     {
         //
+    }
+
+    protected function getReports($user)
+    {
+        $reports = $user->reports()->latest();
+        if(request('search'))
+        {
+            $reports
+                ->whereRaw('CONCAT(`reportName`,`diseaseName`) LIKE "%'.request('search').'%"');
+        }
+        
+        return $reports->paginate(8);
+
     }
 }
