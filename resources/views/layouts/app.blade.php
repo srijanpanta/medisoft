@@ -100,7 +100,7 @@
             @yield('content')
         </main>
         @if(session()->has('success'))
-            <div class="alert alert-success alert-dismissable fade show col-4" style="position: fixed; bottom:0; right:0; height:4rem">
+            {{-- <div class="alert alert-success alert-dismissable fade show col-4" style="position: fixed; bottom:0; right:0; height:4rem">
                 <div class="row">
                     <h5 class="col-9 py-1">
                         {{ session()->get('success') }}
@@ -108,9 +108,27 @@
                     <a class="close btn col-1" type="button" data-bs-dismiss="alert"><h5 class="fas fa-times-circle text-center text-danger"></h5></a>
                 </div>
                 
-            </div>
+            </div> --}}
+             <div class="new-message-box" id="msgBox">
+                    <div class="new-message-box-success">
+                        <div class="info-tab tip-icon-success  " title="error"><i></i></div>
+                        <div class="tip-box-success d-flex justify-content-between">
+                            <p class="mr-5">{{ session()->get('success') }}</p>
+                            <div class="removeMsg mr-2" onclick="closer()">&times;</div>
+                        </div>
+                    </div>
+           </div>     
+             
         @endif
+           
     </div>
+     <script>
+        function closer(){
+            const msgBox= document.getElementById('msgBox');
+            msgBox.classList.add('fade');
+        }
+    </script>
     <script src = "{{ asset('js/custom.js') }}"></script>
+   
 </body>
 </html>

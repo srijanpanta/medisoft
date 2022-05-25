@@ -11,9 +11,4 @@ class DashboardController extends Controller
     {
         $this->middleware(['auth','verified']);
     }
-
-    public function index()
-    {
-        return view('dashboard.index');
-    }
 }

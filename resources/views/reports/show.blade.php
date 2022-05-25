@@ -17,10 +17,22 @@
                     <div class="col-md-6">
                         <div class="p-4">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center flex-row" style="cursor: pointer" onclick="location.href='{{(route('reports.index'))}}'"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div>
-                                <div class="flex flex-row-reverse">
-                                <i class="fa fa-edit text-muted mr-3"></i>
-                                <i class="fa fa-trash text-muted"></i>
+                                <div class="d-flex align-items-center flex-row" style="cursor: pointer" onclick="location.href='{{ url()->previous()}}'"> 
+                                <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div>
+                                <div class="d-flex flex-row">
+                               
+                                   @can('manageReport',$report)
+                                        <a class="btn btn-link fa fa-edit text-muted mr-3" type="submit" href="{{route('reports.edit',$report)}}">
+                                        </a>
+                    
+                               
+                                    <form action="{{route('reports.destroy',$report)}}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                        <button class="btn btn-link fa fa-trash-can text-muted" type="submit"></button>
+                                    </form>
+                               
+                                @endcan
                                 </div>
                                 
                             </div>
@@ -45,24 +57,24 @@
 
 <script>
     // Get the modal
-var modal = document.getElementById("myModal");
+    var modal = document.getElementById("myModal");
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("imgViewer");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById("imgViewer");
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+    }
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() { 
+    modal.style.display = "none";
+    }
 </script>
 @endsection

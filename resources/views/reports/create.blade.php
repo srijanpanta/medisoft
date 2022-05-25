@@ -31,7 +31,7 @@
                     <select class="form-select" name="location">
                         <option selected disabled>Your Location</option>
                         @foreach ($locations as $location)
-                        <option>{{$location->districtName}}</option>
+                        <option value="{{$location->id}}">{{$location->districtName}}</option>
                         @endforeach
                       </select> 
                     @error('location')
@@ -45,7 +45,7 @@
                 </div>
                 <div class="file-upload">
                     <div class="image-upload-wrap">
-                      <input class="file-upload-input" name= "reportImage" type='file' onchange="readURL(this);" accept="image/*" multiple/>
+                      <input class="file-upload-input" id="imageValue" name= "reportImage" type='file' onchange="readURL(this);" accept="image/*" multiple/>
                       <div class="drag-text">
                              <i class="fa-solid fa-image"></i>
                             <h5> Drag or upload your image.</h5>

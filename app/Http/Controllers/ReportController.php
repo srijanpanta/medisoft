@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use App\Models\User;
 use App\Models\Districts;
 use Illuminate\Http\Request;
 use Auth;
@@ -55,6 +56,7 @@ class ReportController extends Controller
             ]);
             
             $input = $request->all();
+            $input['user_id']=Auth::user()->id;
             if ($request->hasFile('reportImage')) {
                 $file = $request->file('reportImage');
                 $file_extension = $file->getClientOriginalName();
@@ -76,8 +78,34 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
-        return view('reports.show', compact('report'));
+        //  
+        if($report->user_id==Auth::user()->id)
+        {
+             return view('reports.show', compact('report'));
+        }
+       else
+       {
+           $user=User::find($report->user_id);
+           $friendship=$user->getFriendShip(Auth::user());
+           if($friendship)
+         {
+             if($friendship->status=="confirmed")
+             {
+                return view('reports.show',compact('report'));
+             }
+             else
+             {
+                  abort(403, 'Unauthorized action.');
+             }
+             
+         }
+         else
+         {
+              abort(403, 'Unauthorized action.');
+         }
+
+       }
+       
     }
 
     /**
@@ -89,6 +117,8 @@ class ReportController extends Controller
     public function edit(Report $report)
     {
         //
+         $locations= Districts::all();
+        return view('reports.edit',compact('report','locations'));
     }
 
     /**
@@ -101,6 +131,42 @@ class ReportController extends Controller
     public function update(Request $request, Report $report)
     {
         //
+        // if($request->reportImage!=null)
+        // {
+            $request->validate([
+            'reportName' => 'required',
+            'diseaseName' => 'required',  
+            'location' => 'required',
+            'reportDescription'=>'required',
+            'reportImage' => 'image|mimetypes:image/jpeg,image/png',
+            ]);
+
+            $input = $request->all();
+            $input['user_id']=Auth::user()->id;
+            if ($request->hasFile('reportImage')) {
+                $file = $request->file('reportImage');
+                $file_extension = $file->getClientOriginalName();
+                $destination_path = public_path() . '/images/';
+                $filename = $file_extension;
+                $request->file('reportImage')->move($destination_path, $filename);
+                $input['reportImage'] = $filename;
+            }
+        // }
+        // else
+        // {
+        //      $request->validate([
+        //     'reportName' => 'required',
+        //     'diseaseName' => 'required',  
+        //     'location' => 'required',
+        //     'reportDescription'=>'required',
+        //     ]);
+        //      $input = $request->all();
+        // }
+       
+            
+           
+        $report->update($input);
+        return redirect('reports')->with('success','Report updated successfully');
     }
 
     /**
@@ -112,6 +178,8 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+        $report->delete();
+        return redirect()->route('reports.index')->with('success','Report deleted successfully');
     }
 
     protected function getReports()
