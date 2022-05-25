@@ -45,9 +45,11 @@ function readURL(input) {
  }
  
  function removeUpload() {
+   document.getElementById('inputValue').value= null;
    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
    $('.file-upload-content').hide();
    $('.image-upload-wrap').show();
+  
  }
  $('.image-upload-wrap').bind('dragover', function () {
        $('.image-upload-wrap').addClass('image-dropping');
