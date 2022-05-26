@@ -49,9 +49,15 @@
                         </li>
                         @endcan
                         <li>
-                            <a href="#" class="nav-link link-dark">
+                            <a href="{{route('checkup')}}" class="nav-link link-dark @if (Route::current()->getName() == 'checkup') active  @endif">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                            Customers
+                            Health Checkup
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/maps/search/nearby+hospitals/" class="nav-link link-dark">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                            Nearby Hospitals
                             </a>
                         </li>
                         </ul>

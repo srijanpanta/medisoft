@@ -10,6 +10,7 @@ use App\Http\Controllers\FriendshipController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,10 @@ Route::get('change-password', [ChangePasswordController::class,'index'])->name('
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('changePassword.update');
 
 Route::resource('friends',FriendshipController::class)->middleware('auth');
+
+Route::get('checkup',function(){
+    return view('checkup');
+})->name('checkup');
+
+Route::get('send', [App\Http\Controllers\HomeController::class, 'sendNotification']);
+Route::get('notifications', [App\Http\Controllers\HomeController::class, 'getNotifications']);
