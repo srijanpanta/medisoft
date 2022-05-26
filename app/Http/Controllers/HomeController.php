@@ -73,7 +73,23 @@ class HomeController extends Controller
     public function getNotifications()
     {
         $user=Auth::user();
-        $notifications = $user->notifications;
+        $notifications = $user->notifications->sortByDesc('created_at');
         return view('notification',compact('notifications'));
     }
+    public function readNotifications()
+    {
+             $user=Auth::user();
+            $notifications = $user->notifications;
+            $notifications->markAsRead();
+        return redirect()->route('notifications');
+    }
+    public function readNotificationsSingle($notificationId)
+    {
+        $user=Auth::user();
+        $notification=$user->notifications->where('id',$notificationId);
+        $notification->markAsRead();
+
+        return redirect()->route('notifications');
+    }
+
 }
