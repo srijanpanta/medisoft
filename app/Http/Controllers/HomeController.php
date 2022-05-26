@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use App\Notifications\MedisoftNotification;
+use Notification;
 
 class HomeController extends Controller
 {
@@ -48,5 +50,30 @@ class HomeController extends Controller
        
         $user->update($request->all());
         return redirect()->route('home')->with('success','Profile updated successfully!'); 
+    }
+    
+    public function sendNotification(Request $request)
+    {
+        $user = User::first();
+  
+        
+        $details = [
+            'greeting' => 'Hi '.$user->name,
+            'body' => $request['disease'].' is spreading in your area as per the report submitted by our users. We recommend you to apply precaution measures.',
+            'thanks' => 'Thank you for using Medisoft',
+            'actionText' => 'Know about this disease',
+            'actionURL' => url('https://openmd.com/search?q='.$request['disease']),
+        ];
+  
+        Notification::send($user, new MedisoftNotification($details));
+   
+        dd($user->notifications);
+    }
+
+    public function getNotifications()
+    {
+        $user=Auth::user();
+        $notifications = $user->notifications;
+        return view('notification',compact('notifications'));
     }
 }
