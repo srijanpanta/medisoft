@@ -70,7 +70,12 @@
                                  <span class="badge">{{$unseenCounter}}</span></a>
                             </li>
                             <li class="nav-item mr-lg-5 mr-2">
-                                <a class="nav-link notification" href="notification"><i class="fa-solid fa-bell"></i> <span class="badge">0</span></a>
+                                <a class="nav-link notification" href="{{route('notifications')}}"><i class="fa-solid fa-bell"></i>
+                                 @php
+                                    $unseenNotification= Auth::user()->unreadNotifications->count();
+                                    
+                                @endphp
+                                 <span class="badge">{{$unseenNotification}}</span></a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
