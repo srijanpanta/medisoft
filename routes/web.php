@@ -48,4 +48,7 @@ Route::get('checkup',function(){
 })->name('checkup');
 
 Route::get('send', [App\Http\Controllers\HomeController::class, 'sendNotification']);
-Route::get('notifications', [App\Http\Controllers\HomeController::class, 'getNotifications']);
+Route::get('notifications', [App\Http\Controllers\HomeController::class, 'getNotifications'])->name('notifications');
+Route::get('readMsg', [App\Http\Controllers\HomeController::class, 'readNotifications'])->name('readMsg');
+Route::get('readMsgSingle/{notificationId}', [App\Http\Controllers\HomeController::class, 'readNotificationsSingle'])->name('readMsgSingle');
+
