@@ -13,7 +13,7 @@ class FriendshipController extends Controller
 {
      public function __construct()
     {
-        $this->middleware('can:isDoctor', ['except' => ['index']]);
+        $this->middleware('can:isDoctor', ['except' => ['index','store']]);
     }
     /**
      * Display a listing of the resource.
@@ -53,9 +53,8 @@ class FriendshipController extends Controller
         $input['first_user']=Auth::user()->id;
         $input['acted_user']=Auth::user()->id;
         $input['status']='pending';
-
         Friendship::create($input);
-        return redirect('doctors');
+        return redirect('doctors')->with('success','Friend request sent');
     }
 
     /**
@@ -112,6 +111,9 @@ class FriendshipController extends Controller
         $friendship=Friendship::find($id);
         $friendship->status='confirmed';
         $friendship->save();
+
+        return redirect()->route('friendRequestNotification',['first_user'=>$friendship->acted_user,'second_user'=>Auth::user()->id]);
+        
     }
 
     /**
