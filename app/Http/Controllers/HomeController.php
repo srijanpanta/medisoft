@@ -54,7 +54,7 @@ class HomeController extends Controller
     
     public function sendNotification(Request $request)
     {
-        $user = User::first();
+        $user = User::find($request['id']);
   
         
         $details = [
@@ -66,8 +66,21 @@ class HomeController extends Controller
         ];
   
         Notification::send($user, new MedisoftNotification($details));
-   
-        dd($user->notifications);
+    }
+
+    public function friendRequestNotification(Request $request)
+    {
+        $user = User::find($request['first_user']);
+        $user2= User::find($request['second_user']);
+        $details = [
+            'greeting' => 'Hi '.$user->name,
+            'body' => $user2->name.' has accepted your friend request.',
+            'thanks' => 'Thank you for using Medisoft',
+            'actionText' => 'Visit Medisoft',
+            'actionURL' => url('/'),
+        ];
+        Notification::send($user, new MedisoftNotification($details));
+        return redirect()->back()->with('success','You are now friends');
     }
 
     public function getNotifications()
