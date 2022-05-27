@@ -47,7 +47,7 @@
             {!!
                 strlen($lastMessage->body) > 30
                 ? trim(substr($lastMessage->body, 0, 30)).'..'
-                : $lastMessage->body
+                : $lastMessage->body    
             !!}
             @else
             <span class="fas fa-file"></span> Attachment

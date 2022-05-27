@@ -21,6 +21,11 @@
     @endphp
     <div class="container mt-5">
         <div class="row text-center">
+          @if ($friendrequests->count()==0)
+            <div class="d-flex justify-content-center mt-1">
+                <h1 class="font-weight-bold" style="font-size: 1.5rem">No new friend request.</h1>
+            </div>  
+         @endif
         @foreach ($friendrequests as $friendrequest)
 
         @php
