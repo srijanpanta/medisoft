@@ -190,6 +190,15 @@ class ReportController extends Controller
             $reports
                 ->whereRaw('CONCAT(`reportName`,`diseaseName`) LIKE "%'.request('search').'%"');
         }
+        if(request('startDate'))
+        {
+            $reports->where('created_at','>=',request('startDate'));
+        }
+        if(request('endDate'))
+        {
+            $reports->where('created_at','<=',request('endDate'));
+        }
+
         
         return $reports->paginate(8);
 
