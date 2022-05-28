@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use App\Notifications\MedisoftNotification;
+use Chatify\Facades\ChatifyMessenger as Chatify;
+use Illuminate\Support\Str;
 use Notification;
+
 
 class HomeController extends Controller
 {
@@ -33,6 +36,8 @@ class HomeController extends Controller
     public function update(Request $request)
     {
         $user = User::find(Auth::user()->id);
+        $error=0;
+        $msg=null;
         if($request->email!=Auth::user()->email)
         {
             $request->validate([
@@ -47,9 +52,45 @@ class HomeController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'phoneNumber' => 'required|regex:/(98)[0-9]{8}/',
         ]);
+        if ($request->hasFile('avatar')) {
+            // allowed extensions
+            $allowed_images = Chatify::getAllowedImages();
+
+            $file = $request->file('avatar');
+            // check file size
+            if ($file->getSize() < Chatify::getMaxUploadSize()) {
+                if (in_array($file->getClientOriginalExtension(), $allowed_images)) {
+                    // delete the older one
+                    if (Auth::user()->avatar != config('chatify.user_avatar.default')) {
+                        $avatar = Auth::user()->avatar;
+                        if (Chatify::storage()->exists($avatar)) {
+                            Chatify::storage()->delete($avatar);
+                        }
+                    }
+                    // upload
+                    $avatar = Str::uuid() . "." . $file->getClientOriginalExtension();
+                    $update = User::where('id', Auth::user()->id)->update(['avatar' => $avatar]);
+                    $file->storeAs(config('chatify.user_avatar.folder'), $avatar, config('chatify.storage_disk_name'));
+                    $success = $update ? 1 : 0;
+                } else {
+                    $msg = "File extension not allowed!";
+                    $error = 1;
+                }
+            } else {
+                $msg = "File size you are trying to upload is too large!";
+                $error = 1;
+            }
+        }
+        if($error==1)
+        {
+            return redirect()->route('home')->with('warning',$msg);
+        }
+        else
+        {
+             $user->update(['name'=>$request->name,'email'=>$request->email,'phoneNumber'=>$request->phoneNumber]);
+            return redirect()->route('home')->with('success','Profile updated successfully!'); 
+        }
        
-        $user->update($request->all());
-        return redirect()->route('home')->with('success','Profile updated successfully!'); 
     }
     
     public function sendNotification(Request $request)
