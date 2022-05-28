@@ -7,6 +7,8 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FriendshipController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\DiseaseController;
 
 
 
@@ -53,3 +55,7 @@ Route::get('notifications', [App\Http\Controllers\HomeController::class, 'getNot
 Route::get('readMsg', [App\Http\Controllers\HomeController::class, 'readNotifications'])->name('readMsg');
 Route::get('readMsgSingle/{notificationId}', [App\Http\Controllers\HomeController::class, 'readNotificationsSingle'])->name('readMsgSingle');
 
+Route::post('newsletter', NewsletterController::class);
+
+Route::get('disease',[DiseaseController::class,'index'])->name('disease');
+Route::get('disease\{diseaseName}',[DiseaseController::class,'place'])->name('disease.place');
