@@ -13,7 +13,7 @@ class FriendshipController extends Controller
 {
      public function __construct()
     {
-        $this->middleware('can:isDoctor', ['except' => ['index','store']]);
+        $this->middleware('can:isDoctor', ['except' => ['index','store','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -73,7 +73,7 @@ class FriendshipController extends Controller
              if($friendship->status=="confirmed")
              {
                  $reports = $this->getReports($user);
-                return view('doctors.reports',compact('reports'));
+                return view('doctors.reports',compact('reports','user'));
              }
              else
              {
@@ -122,9 +122,13 @@ class FriendshipController extends Controller
      * @param  \App\Models\Friendship  $friendship
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Friendship $friendship)
+    public function destroy($id)
     {
         //
+       $user=User::find($id);
+        $friendship = $user->getFriendship(auth()->user());
+        $friendship->delete();
+        return redirect()->back();
     }
 
     protected function getReports($user)
