@@ -11,6 +11,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "mailchimp/mailchimp": "^2.0",
+        "mailchimp/marketing": "^3.0",
         "munafio/chatify": "^1.4",
         "stevebauman/location": "^6.4"
     },
