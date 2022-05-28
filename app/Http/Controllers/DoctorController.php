@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -88,7 +89,7 @@ class DoctorController extends Controller
 
     protected function getDoctors()
     {
-        $doctors = User::where('role','doctor');
+        $doctors = User::where('role','doctor')->where('id','<>',Auth::user()->id);
         if(request('search'))
         {
             $doctors
