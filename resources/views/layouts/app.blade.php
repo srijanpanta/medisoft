@@ -84,6 +84,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a  class = "dropdown-item" href="{{route('reports.index')}}">Dashboard</a>
+                                    <a  class = "dropdown-item" href="{{route('home')}}">Accounts</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -125,6 +127,21 @@
            </div>     
              
         @endif
+
+        @if(session()->has('warning'))
+        <div class="new-message-box" id="msgBox">
+                    <div class="new-message-box-warning">
+                        <div class="info-tab tip-icon-warning" title="error"><i></i></div>
+                        <div class="tip-box-warning d-flex justify-content-between">
+                            <p class="mr-5">{{ session()->get('warning') }}</p>
+                            <div class="removeMsg mr-2" onclick="closer()">&times;</div>
+                        </div>
+                    </div>
+           </div>     
+             
+        @endif
+
+
            
     </div>
      <script>
