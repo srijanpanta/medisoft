@@ -21,7 +21,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role');
-            $table->string('image');
             $table->string('doctor_type')->nullable();
             $table->string('nmc_no')->nullable();
             $table->string('doctor_degree')->nullable();
