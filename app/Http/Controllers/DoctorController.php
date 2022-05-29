@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Auth;
+use Hash;
+use App\Providers\RouteServiceProvider;
+
 
 use Illuminate\Http\Request;
 
@@ -13,6 +16,10 @@ class DoctorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['create','store']]);
+    }
     public function index()
     {
         //
@@ -29,6 +36,7 @@ class DoctorController extends Controller
     public function create()
     {
         //
+        return view('auth.registerDoctor');
     }
 
     /**
@@ -40,6 +48,38 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phoneNumber' => 'required|regex:/(98)[0-9]{8}/',
+            'nmc'=>'required',
+            'document'=> 'required|image|mimetypes:image/jpeg,image/png',
+            'doctor_degree'=>'required',
+            'doctor_type'=>'required',
+            ]);
+            $input = $request->all();
+            if ($request->hasFile('document')) {
+                $file = $request->file('document');
+                $file_extension = $file->getClientOriginalName();
+                $destination_path = public_path() . '/images/';
+                $filename = $file_extension;
+                $request->file('document')->move($destination_path, $filename);
+                $input['document'] = $filename;
+            }
+            // dd($input);
+            User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'phoneNumber' => $input['phoneNumber'],
+            'password' => Hash::make($input['password']),
+            'nmc'=>$input['nmc'],
+            'document'=>$input['document'],
+            'role'=>'doctor',
+            'doctor_degree'=>$input['doctor_degree'],
+            'doctor_type'=>$input['doctor_type'],
+        ]);
+        
     }
 
     /**
@@ -82,9 +122,11 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $doctor)
     {
         //
+        $doctor->delete();
+        return redirect()->route('doctors.index')->with('success','Doctor deleted successfully');
     }
 
     protected function getDoctors()
