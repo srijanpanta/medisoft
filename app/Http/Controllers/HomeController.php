@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth','verified',]);
     }
 
     /**
@@ -124,6 +124,19 @@ class HomeController extends Controller
         return redirect()->back()->with('success','You are now friends');
     }
 
+    public function sendAcceptedNotification(Request $request)
+    {
+        $user = User::find($request['user_id']);
+        $details = [
+            'greeting' => 'Hi '.$user->name,
+            'body' => 'You have been accepted as a doctor by the admin.',
+            'thanks' => 'Thank you for using Medisoft',
+            'actionText' => 'Visit Medisoft',
+            'actionURL' => url('/'),
+        ];
+         Notification::send($user, new MedisoftNotification($details));
+        return redirect()->back()->with('success','Doctor accepted successfully');
+    }
     public function getNotifications()
     {
         $user=Auth::user();
