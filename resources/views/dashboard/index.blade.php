@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-3 col-12">
+        <div class="col-lg-3 col-md-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light mt-2">
                 <h1 class="d-lg-none dashboard">Dashboard</h1>
                 <button class="navbar-toggler ms-auto" type="button" data-toggle="collapse" data-target="#sidebarContent" aria-controls="sidebarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,17 @@
                             Reports
                             </a>
                         </li>
+                        @can('isAdmin')
+                        <li>
+                            <a href="{{route('newDoctors')}}" class="nav-link link-dark @if (Route::current()->getName() == 'newDoctors') active  @endif">
+                            @php
+                                $newDoctorsCount = DB::table('users')->where('role','doctor')->where('status','notVerified')->count();
+                            @endphp
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                            New Doctors <span class="badge badge-primary">{{$newDoctorsCount}}</span>
+                            </a>
+                        </li>
+                        @endcan
                         <li>
                             <a href="{{route('doctors.index')}}" class="nav-link link-dark @if (Route::current()->getName() == 'doctors.index') active  @endif">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
@@ -28,13 +39,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('friends.index')}}" class="nav-link link-dark">
+                            <a href="{{route('friends.index')}}" class="nav-link link-dark @if (Route::current()->getName() == 'friends.index') active  @endif">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                            @can('isDoctor')
+                            @if (Auth::user()->role=='doctor')
                             
                                  Your Patients
                             
-                            @endcan
+                            @endif
                             @can('isPatient')
                                 Your Doctors
                             @endcan
@@ -48,6 +59,12 @@
                             </a>
                         </li>
                         @endcan
+                        <li>
+                            <a href="{{route('disease')}}" class="nav-link link-dark @if (Route::current()->getName() == 'disease') active  @endif">
+                            <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                            Disease
+                            </a>
+                        </li>
                         <li>
                             <a href="{{route('checkup')}}" class="nav-link link-dark @if (Route::current()->getName() == 'checkup') active  @endif">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
@@ -66,7 +83,7 @@
                 </div>
             </nav>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-md-12">
            @yield('dashboardContent')
         </div>
     </div>  
