@@ -15,6 +15,7 @@ function reveal() {
    }
  }
 }
+
 $(document).ready(function () {
   $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
@@ -45,7 +46,7 @@ function readURL(input) {
  }
  
  function removeUpload() {
-   document.getElementById('inputValue').value= null;
+   document.getElementById('imageValue').value= null;
    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
    $('.file-upload-content').hide();
    $('.image-upload-wrap').show();

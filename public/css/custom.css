@@ -513,7 +513,7 @@ nav i {
 }
 
 /* The Modal (background) */
-.modal {
+.modal-img {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -815,11 +815,11 @@ nav i {
 {
   opacity: 100%;
 }
-.fade {
+/* .fade {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.5s, opacity 0.5s linear;
-}
+} */
 @keyframes cssAnimation {
     0%   {opacity: 1;}
     90%  {opacity: 1;}
