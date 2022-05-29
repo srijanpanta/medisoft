@@ -49,12 +49,29 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        if($data['role']!="doctor")
+        {
+            return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phoneNumber' => 'required|regex:/(98)[0-9]{8}/',
         ]);
+        }
+        else
+        {
+            return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phoneNumber' => 'required|regex:/(98)[0-9]{8}/',
+            'nmc_no'=>'required',
+            'document'=> 'required|image|mimetypes:image/jpeg,image/png',
+            'doctor_degree'=>'required',
+            'doctor_type'=>'required',
+             ]);
+        }
+        
     }
 
     /**
@@ -65,11 +82,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phoneNumber' => $data['phoneNumber'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $data['password']=Hash::make($data['password']);
+        if($data['role']=='patient')
+        {
+            $data['status']='verified';
+        }
+        else
+        {
+            $data['status']='notVerified';
+        }
+        return User::create($data);
     }
 }
