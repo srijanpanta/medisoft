@@ -32,12 +32,12 @@
         @endphp
         <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 mb-5">
         <div class="card " style="width: 20rem;">
-          <img class="card-img-top img-circle rounded-circle" src="https://dummyimage.com/100x100/000/fff" alt="Card image cap">
+          <img class="card-img-top img-circle rounded-circle" src="{{Chatify::getUserWithAvatar($user)->avatar}}" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">{{$user->name}}</h4>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{$user->email}}</li>
-              <li class="list-group-item">NMC: {{$user->phoneNumber}}</li>
+              <li class="list-group-item">Phone: {{$user->phoneNumber}}</li>
               <li class="list-group-item d-flex justify-content-between">
                 <form action="{{route('friends.update',$friendrequest->id)}}" method="POST">
                 @method('PUT')

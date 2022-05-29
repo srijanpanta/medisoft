@@ -31,8 +31,39 @@
         </div>
       <div class="row text-center">
         @foreach ($doctors as $doctor)
-        <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 mb-5">
-        <div class="card " style="width: 20rem;">
+        <div class="col-lg-4 col-xl-4 col-md-6 col-sm-12 mb-5 d-flex justify-content-center">
+        <div class="card" style="width: 20rem;">
+        @can('isAdmin')
+          <div class="position-absolute top-0 end-0 mr-2 mt-2">
+            <button class="btn btn-link text-danger fa-solid fa-trash-can" data-toggle="modal" data-target="#exampleModalCenter"></button>
+          </div>
+           <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" type="button">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      Do you want to delete the doctor? 
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <form action="{{route('doctors.destroy',$doctor)}}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                  </div>
+                  </div>
+              </div>
+              </div>
+        
+        @endcan
+        
           <img class="card-img-top img-circle rounded-circle" src="{{Chatify::getUserWithAvatar($doctor)->avatar}}" alt="Card image cap">
           <div class="card-body">
             <h4 class="card-title">{{$doctor->name}}</h4>
