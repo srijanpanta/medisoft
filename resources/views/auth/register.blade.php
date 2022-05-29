@@ -75,7 +75,9 @@
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Confirm Password">
               </div>
             <div class="d-flex justify-content-between align-items-center mb-5">
+              <input type="hidden" name="role" value="patient">
               <input name="login" id="login" class="btn login-btn" type="submit" value="Register">
+              <a href="{{route('doctors.create')}}" class="text-danger text-decoration-none"> Register as a doctor?</a>
             </div>
           </form>           
         </div>
