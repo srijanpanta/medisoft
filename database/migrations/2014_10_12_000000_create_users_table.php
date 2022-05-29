@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('phoneNumber')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role');
+            $table->string('role')->default('patient');
             $table->string('doctor_type')->nullable();
             $table->string('nmc_no')->nullable();
             $table->string('doctor_degree')->nullable();
+            $table->string('document')->nullable();
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });
