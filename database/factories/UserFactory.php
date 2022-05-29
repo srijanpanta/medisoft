@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'phoneNumber' => $this->faker->numerify('98########'),
             'remember_token' => Str::random(10),
             'role'=>'patient',
+            'status'=>'verified',
         ];
     }
 
