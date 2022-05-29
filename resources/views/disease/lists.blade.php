@@ -1,9 +1,25 @@
 @extends('dashboard.index')
 
 @section('dashboardContent')
-     @foreach ($diseases as $disease)
+<div class="container-fluid mx-3">
 
-    <div class="d-flex justify-content-center row my-2">
+    <div class="row justify-content-center mb-5 mt-4">
+        <div class="col-9">
+            <form method="GET" action="#">
+                <div class="input-group rounded h-100 p-0">
+                
+                    <input type="search" name = "search" class="form-control rounded" placeholder="Search for disease" aria-label="Search" aria-describedby="search-addon" value="{{request('search')}}" />
+                    <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                    </span>
+            </div>
+        </form>
+        </div>
+     </div>
+
+    @foreach ($diseases as $disease)
+
+    <div class="d-flex row my-2 mx-3 justify-content-center">
         <div class="col-md-10">
             <div class="row p-2 bg-white border rounded">
                 <div class="col-md-6 mt-1">
@@ -28,4 +44,10 @@
         </div>
     </div>
     @endforeach
+    <div class="mt-3">
+        {{ $diseases->appends(request()->query())->links()}}
+     </div>
+
+</div>
+     
 @endsection

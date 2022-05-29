@@ -8,7 +8,7 @@
                     <div class="col-md-6">
                             <div class="text-center p-4"> <img id ="imgViewer" src="{{asset('images/'.$report->reportImage)}}" width="250" /> </div>
                             <!-- The Modal -->
-                            <div id="myModal" class="modal">
+                            <div id="myModal" class="modal-img">
                                 <span class="close">&times;</span>
                                 <img class="modal-content" id="img01">
                                 <div id="caption"></div>
@@ -24,13 +24,35 @@
                                    @can('manageReport',$report)
                                         <a class="btn btn-link fa fa-edit text-muted mr-3" type="submit" href="{{route('reports.edit',$report)}}">
                                         </a>
-                    
-                               
-                                    <form action="{{route('reports.destroy',$report)}}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                        <button class="btn btn-link fa fa-trash-can text-muted" type="submit"></button>
-                                    </form>
+                                     <button class="btn btn-link fa fa-trash-can text-muted" data-toggle="modal" data-target="#exampleModalCenter"></button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Do you want to delete the report? 
+                                            It cannot be undone.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                           <form action="{{route('reports.destroy',$report)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                    
                                
                                 @endcan
                                 </div>

@@ -53,7 +53,7 @@
                 </div>
                 <div class="file-upload">
                     <div class="image-upload-wrap">
-                      <input class="file-upload-input" name= "reportImage" type='file' id="inputValue" onchange="readURL(this);" accept="image/*"/>
+                      <input class="file-upload-input" name= "reportImage" type='file' id="imageValue" onchange="readURL(this);" accept="image/*"/>
                       <div class="drag-text">
                              <i class="fa-solid fa-image"></i>
                             <h5> Drag or upload your image.</h5>

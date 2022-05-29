@@ -37,7 +37,7 @@
             
             <div class="form-group mb-3" style="position:relative">
                 <input id="password" type="password" class="form-control" name="password" autocomplete="current-password" placeholder="Password">
-                <div style="position: absolute; right:0.5rem; top:1rem">
+                <div style="position: absolute; right:0.5rem; top:0.5rem">
                     <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
                 </div>
                 @error('password')

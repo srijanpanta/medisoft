@@ -28,7 +28,7 @@
                             </div>
                     </div>
                     <div class="d-flex flex-row-reverse my-2">
-                        <a class="btn btn-link" onclick="toggleFilter()" id="toggleButton">@if(request('startDate') || request('endDate'))Hide Filters @else Show Filters @endif
+                        <a class="btn btn-link text-decoration-none" onclick="toggleFilter()" id="toggleButton">@if(request('startDate') || request('endDate'))Hide Filters @else Show Filters @endif
                         </a>
                     </div>
                 
@@ -40,7 +40,7 @@
             </div>  
          @endif
      </div>
-     <div class="row mt-3">
+     <div class="row mt-3 ml-3">
         @foreach($reports as $report)
             <div class="col-lg-3 col-md-6 col-sm-6 mb-5">
                 <div class="card report-card" onclick="location.href= '{{(route('reports.show',$report->id))}}'">
