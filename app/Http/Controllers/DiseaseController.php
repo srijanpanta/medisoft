@@ -13,14 +13,15 @@ class DiseaseController extends Controller
     public function index()
     {
 
-        // $diseases=Report::latest()->pluck('diseaseName')->unique()->toArray();
         $diseases=DB::table('reports')
-             ->select(DB::raw('count(*) as diseaseCount, diseaseName'))
-             ->groupBy('diseaseName')
-             ->orderBy('diseaseCount','DESC')
-             ->get();
-        // dd($diseases);
-        return view('disease.lists',compact('diseases'));
+             ->select(DB::raw('count(*) as diseaseCount, diseaseName'))->latest();
+             if(request('search'))
+        {
+            $diseases->where('diseaseName','LIKE','%'.request('search').'%');
+        }
+            $diseases->groupBy('diseaseName')->orderBy('diseaseCount','DESC');
+
+        return view('disease.lists',['diseases'=>$diseases->paginate(5)]);
     }
 
     public function place(Request $request)
