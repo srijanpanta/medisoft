@@ -24,7 +24,7 @@
                                         <form action="{{route('acceptDoctor',$doctor)}}" method="POST">
                                         @csrf
                                         @method('PUT')
-                                            <button class="btn btn-link fa fa-edit text-muted mr-3" type="submit">
+                                            <button class="btn btn-link fa-solid fa-circle-check text-muted mr-3" type="submit">
                                         </button>
                                         </form>
                                         
@@ -63,7 +63,44 @@
                                 <h5 class="text-uppercase">{{$doctor->name}}</h5>
                                 <span class="text-uppercase text-muted brand">{{$doctor->email}}</span>
                             </div>
-                            <p class="about">{{$doctor->doctor_type}}</p>
+                            <hr>
+                            <div class="row">
+                                <div class="col-3 m-0 px-2">
+                                <div class="d-flex flex-column">
+                                    <span class="mb-2">
+                                        Degree: 
+                                    </span>
+                                    <span class="mb-2">
+                                        Type:
+                                    </span>
+                                    <span class="mb-2">
+                                        Nmc:
+                                    </span>
+                                    <span class="mb-2">
+                                        Phone:
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-9 m-0 p-0">
+                                <div class="d-flex flex-column">
+                                    <span class="mb-2">
+                                        {{$doctor->doctor_degree}}
+                                    </span>
+                                    <span class="mb-2">
+                                         {{$doctor->doctor_type}}
+                                    </span>
+                                    <span class="mb-2">
+                                        {{$doctor->nmc_no}}
+                                    </span>
+                                    <span class="mb-2">
+                                         {{$doctor->phoneNumber}}
+                                    </span>
+                                </div>
+                            </div>
+                            </div>
+                            
+                           
+                            
                             <div class="sizes mt-5">
                                 <h6>
                                     Date created: {{$doctor->created_at->todatestring()}}

@@ -62,16 +62,16 @@
         @php
             $locations = DB::table('districts')->get();
         @endphp
-        <div class="form-group">
-                    <select class="form-select" name="location" style="border:none;">
+        <div class="form-group mb-3">
+                    <select class="form-select @error('phoneNumber') is-invalid @enderror" name="location" style="border:none;">
                         <option selected disabled>Your Location</option>
                         @foreach ($locations as $location)
                         <option value="{{$location->id}}" style="color: black">{{$location->districtName}}</option>
                         @endforeach
                       </select> 
                     @error('location')
-                        <span class="text-danger">
-                        {{$message."*"}}   
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>   
                         </span>
                     @enderror
                 </div>
