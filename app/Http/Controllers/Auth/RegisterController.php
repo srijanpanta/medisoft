@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Input;
 
 class RegisterController extends Controller
 {
@@ -56,6 +57,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phoneNumber' => 'required|regex:/(98)[0-9]{8}/',
+            'location' => 'required',
         ]);
         }
         else
@@ -69,6 +71,7 @@ class RegisterController extends Controller
             'document'=> 'required|image|mimetypes:image/jpeg,image/png',
             'doctor_degree'=>'required',
             'doctor_type'=>'required',
+            'location'=>'required',
              ]);
         }
         
@@ -83,6 +86,15 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['password']=Hash::make($data['password']);
+        if(request()->hasFile('document'))
+        {
+            $file = request()->file('document');
+                $file_extension = $file->getClientOriginalName();
+                $destination_path = public_path() . '/images/';
+                $filename = $file_extension;
+                request()->file('document')->move($destination_path, $filename);
+                $data['document'] = $filename;
+        }
         if($data['role']=='patient')
         {
             $data['status']='verified';
