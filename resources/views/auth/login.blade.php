@@ -3,15 +3,10 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-6 col-md-7 intro-section">
-        <div class="brand-wrapper">
-          <h1>Logo</h1>
-        </div>
+       <div class="col-sm-6 col-md-7 intro-section">
         <div class="intro-content-wrapper">
-          <h1 class="intro-title">Welcome to website !</h1>
-          <p class="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna</p>
-          <a href="#!" class="btn btn-read-more">Read more</a>
+          <h1 class="intro-title">Welcome to Medisoft !</h1>
+          <p class="intro-text">Get started with medisoft by simply registering to our website</p>
         </div>
         <div class="intro-section-footer">
           <nav class="footer-nav">
