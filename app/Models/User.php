@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
 		'role',
 		'doctor_type',
 		'nmc_no',
+		'location',
 		'doctor_degree',
 		'document',
 		'status',
