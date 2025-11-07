@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><# Medical Reports Web Application (EHR System)
+Medisoft Application
 
 A secure, full-stack Laravel-based Electronic Health Record (EHR) system for streamlined digital medical record management. Patients, doctors, and admins each have custom dashboards and permissions. The project includes real-time chat, email notifications, and robust role-based authorization.
 
